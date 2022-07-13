@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { fetchCoins } from "../api";
 
 const Container = styled.div`
   padding: 10px 20px 10px 20px;
@@ -29,7 +31,8 @@ const Coin = styled.li`
   a {
     padding: 20px;
     transition: color 0.2s ease-in;
-    display: block;
+    display: flex;
+    align-items: center;
   }
   &:hover {
     a {
@@ -38,9 +41,16 @@ const Coin = styled.li`
   }
 `;
 
+const Img = styled.img`
+  width: 35px;
+  height: 35px;
+  margin: 5px 10px 5px 0px;
+`;
+
 const Loader = styled.span`
   text-align: center;
   display: block;
+  font-size: 30px;
 `;
 
 interface CoinInterface {
@@ -54,7 +64,8 @@ interface CoinInterface {
 }
 
 function Coins() {
-  const [coins, setCoins] = useState<CoinInterface[]>([]);
+  const { isLoading, data } = useQuery<CoinInterface[]>("allCoins", fetchCoins);
+  /*const [coins, setCoins] = useState<CoinInterface[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
@@ -63,19 +74,24 @@ function Coins() {
       setCoins(json.slice(0, 99));
       setLoading(false);
     })();
-  }, []);
+  }, []);*/
   return (
     <Container>
       <Header>
         <Title> Coins </Title>
       </Header>
-      {loading ? (
+      {isLoading ? (
         <Loader> ...로딩중... </Loader>
       ) : (
         <CoinList>
-          {coins.map((coin) => (
+          {data?.slice(0, 99).map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`}> {coin.name} &rarr; </Link>{" "}
+              <Link to={`/${coin.id}`} state={{ name: coin.name }}>
+                <Img
+                  src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
+                />
+                {coin.name} &rarr;
+              </Link>{" "}
             </Coin>
           ))}
         </CoinList>
