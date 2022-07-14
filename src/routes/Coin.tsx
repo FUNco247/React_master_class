@@ -72,9 +72,8 @@ const Tab = styled.span<{ isActive: boolean }>`
   padding: 7px 0px;
   border-radius: 10px;
   color: ${(props) =>
-    props.isActive ? props.theme.accentColor : props.theme.textColor};
+    props.isActive ? props.theme.accentColor : props.theme.bgColor};
   a {
-    color: ${(props) => props.theme.bgColor};
     display: block;
   }
 `;
@@ -160,8 +159,9 @@ interface IPriceData {
 function Coin() {
   const { coinId } = useParams(); // smae as coinId = useParams().coinId
   const location = useLocation() as RouteState;
-  const chartMatch = useMatch("/:coinId/chart");
-  const priceMatch = useMatch("/:coinId/price");
+  const chartMatch = useMatch(":coinId/chart");
+  const priceMatch = useMatch(":coinId/price");
+  console.log(chartMatch, priceMatch);
   const { isLoading: dataLoading, data: coinData } = useQuery<ICoinData>(
     ["coinData", coinId],
     () => fetchCoinData(coinId)
