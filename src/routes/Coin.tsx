@@ -35,11 +35,13 @@ const Loader = styled.span`
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.textColor};
   padding: 10px 20px;
   border-radius: 10px;
+  color: ${(props) => props.theme.textColor};
 `;
 const OverviewItem = styled.div`
+  color: ${(props) => props.theme.bgColor};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,13 +68,32 @@ const Tab = styled.span<{ isActive: boolean }>`
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.textColor};
   padding: 7px 0px;
   border-radius: 10px;
   color: ${(props) =>
     props.isActive ? props.theme.accentColor : props.theme.textColor};
   a {
+    color: ${(props) => props.theme.bgColor};
     display: block;
+  }
+`;
+
+const Back = styled.span`
+  display: flex;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 400;
+  background-color: none;
+  padding: 7px 0px;
+  border-radius: 10px;
+  color: ${(props) => props.theme.textColor};
+  a {
+    display: block;
+    &:hover {
+      color: ${(props) => props.theme.accentColor};
+    }
   }
 `;
 
@@ -147,7 +168,7 @@ function Coin() {
   );
   const { isLoading: priceLoading, data: priceData } = useQuery<IPriceData>(
     ["priceData", coinId],
-    () => fetchCoinData(coinId)
+    () => fetchCoinPrice(coinId)
   );
   /* const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState<ICoinData>();
@@ -181,6 +202,9 @@ function Coin() {
         <Loader> ...로딩중...</Loader>
       ) : (
         <>
+          <Back>
+            <Link to={"/"}> &larr; Show all coins </Link>
+          </Back>
           <Overview>
             <OverviewItem>
               <span>Rank:</span>

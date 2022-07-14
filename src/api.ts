@@ -14,7 +14,7 @@ export async function fetchCoinData(coinId: string | undefined) {
 
 export async function fetchCoinPrice(coinId: string | undefined) {
   const response = await fetch(
-    `https://api.coinpaprika.com/v1/coins/${coinId}`
+    `https://api.coinpaprika.com/v1/tickers/${coinId}`
   );
   const json = await response.json();
   return json;

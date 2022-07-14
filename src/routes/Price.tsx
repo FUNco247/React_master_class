@@ -14,7 +14,7 @@ interface IHistoricData {
   volume: string;
 }
 
-function Chart() {
+function Price() {
   const { coinId } = useParams();
   const { isLoading, data } = useQuery<IHistoricData[]>("coinHistory", () =>
     fetchCoinHistory(coinId)
@@ -85,4 +85,4 @@ function Chart() {
   );
 }
 
-export default Chart;
+export default Price;
