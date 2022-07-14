@@ -96,6 +96,21 @@ const Back = styled.span`
   }
 `;
 
+const HideChart = styled.div<{ isActive: boolean }>`
+  display: ${(props) => (props.isActive ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: ${(props) => props.theme.bgColor};
+  a {
+    display: block;
+    padding: 20px;
+    &:hover {
+      color: ${(props) => props.theme.accentColor};
+    }
+  }
+`;
+
 interface RouteState {
   state: {
     name: string;
@@ -239,6 +254,9 @@ function Coin() {
             </Tab>
           </Tabs>
           <Outlet />
+          <HideChart isActive={chartMatch !== null || priceMatch !== null}>
+            <Link to={`/${coinId}`}> &rarr; Hide Chart &larr; </Link>{" "}
+          </HideChart>
         </>
       )}
     </Container>
