@@ -6,7 +6,7 @@ import Price from "./routes/Chart";
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="https://FUNco247.github.io/React_master_class/">
       <Routes>
         <Route path="/" element={<Coins />} />
         <Route path="/:coinId" element={<Coin />}>
