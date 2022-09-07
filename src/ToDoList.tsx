@@ -1,41 +1,30 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
+interface IForm {
+  toDo: string;
+}
+
 function ToDoList() {
-  const { register, watch, handleSubmit, formState } = useForm();
-  const logData = (data: any) => {
-    console.log(data);
+  const { register, watch, formState, handleSubmit, setValue } =
+    useForm<IForm>();
+  const onSubmit = (data: IForm) => {
+    //console.log(data);
+    setValue("toDo", ""); // if validation passed -> initialize input field
   };
-  console.log(formState.errors);
+  //console.log(formState.errors);
+  //console.log(watch());
   return (
     <div>
-      <form onSubmit={handleSubmit(logData)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          {...register("sampleInput1", {
-            required: "이 필드를 반드시 입력하세요",
+          {...register("toDo", {
+            required: "Should write here",
           })}
-          placeholder="Write a to do"
-        />
-        <input
-          {...register("sampleInput2", { required: true })}
-          placeholder="Write a to do"
-        />
-        <input
-          {...register("sampleInput3", { required: true, minLength: 5 })}
-          placeholder="Write a to do"
-        />
-        <input
-          {...register("sampleInput4", {
-            required: "이 필드를 반드시 입력하세요",
-            minLength: { value: 5, message: "5자 이상 입력하세요" },
-          })}
-          placeholder="Write a to do"
-        />
-        <input
-          {...register("sampleInput5", { required: true })}
-          placeholder="Write a to do"
-        />
+          placeholder="Enter your to do list"
+        ></input>
         <button>Add</button>
+        <br />
+        {formState.errors ? formState.errors.toDo?.message : ""}
       </form>
     </div>
   );
