@@ -23,13 +23,6 @@ const ToDoBox = styled.ul`
   align-items: flex-start;
   width: 70%;
   padding: 0;
-  li {
-    list-style-type: none;
-    width: 100%;
-    border-bottom: 1px solid white;
-    padding-bottom: 3px;
-    margin-bottom: 10px;
-  }
 `;
 
 function ToDoList() {
