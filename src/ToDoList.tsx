@@ -1,7 +1,36 @@
 import { useRecoilValue } from "recoil";
+import styled from "styled-components";
 import { toDoState } from "./atoms";
 import AddToDo from "./components/AddToDo";
 import ListUpToDo from "./components/ListUpToDo";
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+`;
+
+const ToDoBox = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 70%;
+  padding: 0;
+  li {
+    list-style-type: none;
+    width: 100%;
+    border-bottom: 1px solid white;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+  }
+`;
 
 function ToDoList() {
   /** these two line can be replaced below "useRecoilState hook"
@@ -12,16 +41,17 @@ function ToDoList() {
   const toDos = useRecoilValue(toDoState);
 
   return (
-    <div>
-      <h1>오늘의 할 일</h1>
-      <hr />
-      <AddToDo />
-      <ul>
-        {toDos.map((toDo) => (
-          <ListUpToDo key={toDo.id} toDo={toDo} />
-        ))}
-      </ul>
-    </div>
+    <Wrapper>
+      <Container>
+        <h1>오늘의 할 일</h1>
+        <AddToDo />
+        <ToDoBox>
+          {toDos.map((toDo) => (
+            <ListUpToDo key={toDo.id} toDo={toDo} />
+          ))}
+        </ToDoBox>
+      </Container>
+    </Wrapper>
   );
 }
 
