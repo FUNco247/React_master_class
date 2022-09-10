@@ -8,14 +8,24 @@ const List = styled.li`
   padding-bottom: 3px;
   margin-bottom: 10px;
 `;
+
+const BtnBox = styled.div`
+  float: right;
+`;
+
 interface IToDoProps {
   toDo: IToDo;
 }
 
 function ListUpToDo({ toDo }: IToDoProps) {
   return (
-    <List key={toDo.id} className={toDo.type}>
+    <List key={toDo.id}>
       {toDo.text}
+      <BtnBox>
+        {toDo.type !== "DONE" && <button>Done</button>}
+        {toDo.type !== "DOING" && <button>Doing</button>}
+        {toDo.type !== "TO_DO" && <button>To Do</button>}
+      </BtnBox>
     </List>
   );
 }
