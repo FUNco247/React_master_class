@@ -1,5 +1,7 @@
+import React from "react";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { IToDo } from "../atoms";
+import { IToDo, toDoState } from "../atoms";
 
 const List = styled.li`
   list-style-type: none;
@@ -18,13 +20,40 @@ interface IToDoProps {
 }
 
 function ListUpToDo({ toDo }: IToDoProps) {
+  const id = toDo.id;
+  const text = toDo.text;
+  const setToDo = useSetRecoilState(toDoState);
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const newType = event.currentTarget.name;
+    setToDo((current) => {
+      const targetToDoIndex = current.findIndex((toDo) => toDo.id === id);
+      const targetToDo = current[targetToDoIndex];
+      const newToDo = { text, id, type: newType };
+      console.log(targetToDo, newToDo);
+      const partOne = current.slice(0, targetToDoIndex);
+      const partTwo = current.slice(targetToDoIndex + 1);
+      return [...partOne, newToDo as IToDo, ...partTwo];
+    });
+  };
   return (
-    <List key={toDo.id}>
-      {toDo.text}
+    <List key={id}>
+      {text}
       <BtnBox>
-        {toDo.type !== "DONE" && <button>Done</button>}
-        {toDo.type !== "DOING" && <button>Doing</button>}
-        {toDo.type !== "TO_DO" && <button>To Do</button>}
+        {toDo.type !== "DONE" && (
+          <button name="DONE" onClick={onClick}>
+            Done
+          </button>
+        )}
+        {toDo.type !== "DOING" && (
+          <button name="DOING" onClick={onClick}>
+            Doing
+          </button>
+        )}
+        {toDo.type !== "TO_DO" && (
+          <button name="TO_DO" onClick={onClick}>
+            To Do
+          </button>
+        )}
       </BtnBox>
     </List>
   );

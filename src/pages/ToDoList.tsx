@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { toDoState } from "./atoms";
-import AddToDo from "./components/AddToDo";
-import ListUpToDo from "./components/ListUpToDo";
+import { toDoState } from "../atoms";
+import AddToDo from "../components/AddToDo";
+import ListUpToDo from "../components/ListUpToDo";
 
 const Wrapper = styled.div`
   display: flex;
