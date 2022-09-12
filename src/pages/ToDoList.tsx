@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { toDoState } from "../atoms";
+import { toDoSelector, toDoState } from "../atoms";
 import AddToDo from "../components/AddToDo";
 import ListUpToDo from "../components/ListUpToDo";
 
@@ -31,7 +31,8 @@ function ToDoList() {
    * const setValue = useSetRecoilState(toDoState);  this hook set value in the atom
    * const [toDos, setToDos] = useRecoilState(toDoState);  this hook can be used like useState hook
    */
-  const toDos = useRecoilValue(toDoState);
+  //const toDos = useRecoilValue(toDoState); //this code get all data in atom
+  const [toDo, doing, done] = useRecoilValue(toDoSelector);
 
   return (
     <Wrapper>
@@ -39,9 +40,24 @@ function ToDoList() {
         <h1>오늘의 할 일</h1>
         <AddToDo />
         <ToDoBox>
-          {toDos.map((toDo) => (
-            <ListUpToDo key={toDo.id} toDo={toDo} />
-          ))}
+          <div>
+            <h2>TO DO</h2>
+            {toDo.map((toDo) => (
+              <ListUpToDo key={toDo.id} toDo={toDo} />
+            ))}
+          </div>
+          <div>
+            <h2>DOING</h2>
+            {doing.map((toDo) => (
+              <ListUpToDo key={toDo.id} toDo={toDo} />
+            ))}
+          </div>
+          <div>
+            <h2>DONE</h2>
+            {done.map((toDo) => (
+              <ListUpToDo key={toDo.id} toDo={toDo} />
+            ))}
+          </div>
         </ToDoBox>
       </Container>
     </Wrapper>

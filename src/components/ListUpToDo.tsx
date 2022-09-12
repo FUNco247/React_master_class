@@ -29,7 +29,7 @@ function ListUpToDo({ toDo }: IToDoProps) {
       const targetToDoIndex = current.findIndex((toDo) => toDo.id === id);
       const targetToDo = current[targetToDoIndex];
       const newToDo = { text, id, type: newType };
-      console.log(targetToDo, newToDo);
+      //console.log(targetToDo, newToDo);
       const partOne = current.slice(0, targetToDoIndex);
       const partTwo = current.slice(targetToDoIndex + 1);
       return [...partOne, newToDo as IToDo, ...partTwo];
