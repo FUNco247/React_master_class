@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useSetRecoilState } from "recoil";
-import { toDoState } from "../atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { toDoState, typeState } from "../atoms";
 
 interface IForm {
   toDo: string;
@@ -9,10 +9,11 @@ interface IForm {
 function AddToDo() {
   const { register, formState, handleSubmit, setValue } = useForm<IForm>();
   const setToDos = useSetRecoilState(toDoState);
+  const typeOfToDo = useRecoilValue(typeState);
   const onSubmit = (data: IForm) => {
     //console.log(data);
     setToDos((current) => [
-      { text: data.toDo, id: Date.now(), type: "TO_DO" },
+      { text: data.toDo, id: Date.now(), type: typeOfToDo },
       ...current,
     ]);
     setValue("toDo", ""); // if validation passed -> initialize input field

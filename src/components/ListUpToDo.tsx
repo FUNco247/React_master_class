@@ -1,7 +1,7 @@
 import React from "react";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { IToDo, toDoState } from "../atoms";
+import { IToDo, toDoState, Types } from "../atoms";
 
 const List = styled.li`
   list-style-type: none;
@@ -40,17 +40,17 @@ function ListUpToDo({ toDo }: IToDoProps) {
       {text}
       <BtnBox>
         {toDo.type !== "DONE" && (
-          <button name="DONE" onClick={onClick}>
+          <button name={Types.DONE} onClick={onClick}>
             Done
           </button>
         )}
         {toDo.type !== "DOING" && (
-          <button name="DOING" onClick={onClick}>
+          <button name={Types.DOING} onClick={onClick}>
             Doing
           </button>
         )}
         {toDo.type !== "TO_DO" && (
-          <button name="TO_DO" onClick={onClick}>
+          <button name={Types.TO_DO} onClick={onClick}>
             To Do
           </button>
         )}

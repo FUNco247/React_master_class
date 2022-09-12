@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { IToDo, toDoSelector, typeState } from "../atoms";
+import { IToDo, toDoSelector, Types, typeState } from "../atoms";
 import AddToDo from "../components/AddToDo";
 import ListUpToDo from "../components/ListUpToDo";
 
@@ -48,9 +48,9 @@ function ToDoList() {
         <h1>오늘의 할 일</h1>
         <AddToDo />
         <select value={type} onInput={onInput}>
-          <option value="TO_DO"> To do </option>
-          <option value="DOING"> Doing </option>
-          <option value="DONE"> Done </option>
+          <option value={Types.TO_DO}> To do </option>
+          <option value={Types.DOING}> Doing </option>
+          <option value={Types.DONE}> Done </option>
         </select>
         <ToDoBox>
           {toDos.map((toDo) => (

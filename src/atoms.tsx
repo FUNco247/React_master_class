@@ -1,10 +1,16 @@
 import { atom, selector } from "recoil";
 
 // selector treat output of state
+
+export enum Types {
+  "TO_DO" = "TO_DO",
+  "DOING" = "DOING",
+  "DONE" = "DONE",
+}
 export interface IToDo {
   text: string;
   id: number;
-  type: "TO_DO" | "DOING" | "DONE";
+  type: Types;
 }
 
 export const toDoState = atom<IToDo[]>({
@@ -14,7 +20,7 @@ export const toDoState = atom<IToDo[]>({
 
 export const typeState = atom<IToDo["type"]>({
   key: "type",
-  default: "TO_DO",
+  default: Types.TO_DO,
 });
 
 export const toDoSelector = selector({
