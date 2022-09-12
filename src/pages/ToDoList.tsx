@@ -1,9 +1,10 @@
 import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { IToDo, toDoSelector, Types, typeState } from "../atoms";
+import { toDoSelector } from "../atoms";
 import AddToDo from "../components/AddToDo";
 import ListUpToDo from "../components/ListUpToDo";
+import Selector from "../components/Selector";
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,10 +35,7 @@ function ToDoList() {
    */
   //const toDos = useRecoilValue(toDoState); //this code get all data in atom
   const toDos = useRecoilValue(toDoSelector);
-  const [type, setType] = useRecoilState(typeState);
-  const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
-    setType(event.currentTarget.value as IToDo["type"]);
-  };
+
   /** why use onInput event
    * onInput event occurs immediately after the value of an element has changed,
    * while onchange occurs when the element loses focus, after the content has been changed.
@@ -47,11 +45,7 @@ function ToDoList() {
       <Container>
         <h1>오늘의 할 일</h1>
         <AddToDo />
-        <select value={type} onInput={onInput}>
-          <option value={Types.TO_DO}> To do </option>
-          <option value={Types.DOING}> Doing </option>
-          <option value={Types.DONE}> Done </option>
-        </select>
+        <Selector />
         <ToDoBox>
           {toDos.map((toDo) => (
             <ListUpToDo key={toDo.id} toDo={toDo} />

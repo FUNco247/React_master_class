@@ -1,7 +1,7 @@
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { IToDo, toDoState, Types } from "../atoms";
+import { IToDo, toDoState, typesState } from "../atoms";
 
 const List = styled.li`
   list-style-type: none;
@@ -27,7 +27,6 @@ function ListUpToDo({ toDo }: IToDoProps) {
     const newType = event.currentTarget.name;
     setToDo((current) => {
       const targetToDoIndex = current.findIndex((toDo) => toDo.id === id);
-      const targetToDo = current[targetToDoIndex];
       const newToDo = { text, id, type: newType };
       //console.log(targetToDo, newToDo);
       const partOne = current.slice(0, targetToDoIndex);
@@ -35,11 +34,18 @@ function ListUpToDo({ toDo }: IToDoProps) {
       return [...partOne, newToDo as IToDo, ...partTwo];
     });
   };
+  const types = useRecoilValue(typesState);
+  const btnList = types.filter((type) => type !== toDo.type);
   return (
     <List key={id}>
       {text}
       <BtnBox>
-        {toDo.type !== "DONE" && (
+        {btnList.map((type, index) => (
+          <button key={type + index} name={type} onClick={onClick}>
+            {type}
+          </button>
+        ))}
+        {/*        {toDo.type !== "DONE" && (
           <button name={Types.DONE} onClick={onClick}>
             Done
           </button>
@@ -53,7 +59,7 @@ function ListUpToDo({ toDo }: IToDoProps) {
           <button name={Types.TO_DO} onClick={onClick}>
             To Do
           </button>
-        )}
+        )} */}
       </BtnBox>
     </List>
   );

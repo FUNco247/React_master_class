@@ -10,7 +10,7 @@ export enum Types {
 export interface IToDo {
   text: string;
   id: number;
-  type: Types;
+  type: string;
 }
 
 export const toDoState = atom<IToDo[]>({
@@ -21,6 +21,11 @@ export const toDoState = atom<IToDo[]>({
 export const typeState = atom<IToDo["type"]>({
   key: "type",
   default: Types.TO_DO,
+});
+
+export const typesState = atom<IToDo["type"][]>({
+  key: "types",
+  default: [Types.DOING, Types.DONE, Types.TO_DO],
 });
 
 export const toDoSelector = selector({
