@@ -12,14 +12,16 @@ export const toDoState = atom<IToDo[]>({
   default: [],
 });
 
+export const typeState = atom<IToDo["type"]>({
+  key: "type",
+  default: "TO_DO",
+});
+
 export const toDoSelector = selector({
   key: "toDoSelector",
   get: ({ get }) => {
     const toDos = get(toDoState);
-    return [
-      toDos.filter((toDo) => toDo.type === "TO_DO"),
-      toDos.filter((toDo) => toDo.type === "DOING"),
-      toDos.filter((toDo) => toDo.type === "DONE"),
-    ];
+    const type = get(typeState);
+    return toDos.filter((toDo) => toDo.type === type);
   },
 });

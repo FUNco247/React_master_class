@@ -1,6 +1,7 @@
-import { useRecoilValue } from "recoil";
+import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { toDoSelector, toDoState } from "../atoms";
+import { IToDo, toDoSelector, typeState } from "../atoms";
 import AddToDo from "../components/AddToDo";
 import ListUpToDo from "../components/ListUpToDo";
 
@@ -32,32 +33,29 @@ function ToDoList() {
    * const [toDos, setToDos] = useRecoilState(toDoState);  this hook can be used like useState hook
    */
   //const toDos = useRecoilValue(toDoState); //this code get all data in atom
-  const [toDo, doing, done] = useRecoilValue(toDoSelector);
-
+  const toDos = useRecoilValue(toDoSelector);
+  const [type, setType] = useRecoilState(typeState);
+  const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
+    setType(event.currentTarget.value as IToDo["type"]);
+  };
+  /** why use onInput event
+   * onInput event occurs immediately after the value of an element has changed,
+   * while onchange occurs when the element loses focus, after the content has been changed.
+   */
   return (
     <Wrapper>
       <Container>
         <h1>오늘의 할 일</h1>
         <AddToDo />
+        <select value={type} onInput={onInput}>
+          <option value="TO_DO"> To do </option>
+          <option value="DOING"> Doing </option>
+          <option value="DONE"> Done </option>
+        </select>
         <ToDoBox>
-          <div>
-            <h2>TO DO</h2>
-            {toDo.map((toDo) => (
-              <ListUpToDo key={toDo.id} toDo={toDo} />
-            ))}
-          </div>
-          <div>
-            <h2>DOING</h2>
-            {doing.map((toDo) => (
-              <ListUpToDo key={toDo.id} toDo={toDo} />
-            ))}
-          </div>
-          <div>
-            <h2>DONE</h2>
-            {done.map((toDo) => (
-              <ListUpToDo key={toDo.id} toDo={toDo} />
-            ))}
-          </div>
+          {toDos.map((toDo) => (
+            <ListUpToDo key={toDo.id} toDo={toDo} />
+          ))}
         </ToDoBox>
       </Container>
     </Wrapper>
