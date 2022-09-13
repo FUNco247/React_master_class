@@ -13,7 +13,7 @@ function Selector() {
     event.preventDefault();
     const newType = value;
     setTypes((current) => {
-      console.log(current, newType);
+      //console.log(current, newType);
       return [...current, newType];
     });
   };
