@@ -3,6 +3,7 @@ import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { toDoSelector } from "../atoms";
 import AddToDo from "../components/AddToDo";
+import AddType from "../components/AddType";
 import ListUpToDo from "../components/ListUpToDo";
 import Selector from "../components/Selector";
 
@@ -22,9 +23,24 @@ const Container = styled.div`
 const ToDoBox = styled.ul`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 70%;
+  align-items: center;
+  width: 90%;
   padding: 0;
+`;
+
+const AddBox = styled.div`
+  border: solid 2px white;
+  border-radius: 3%;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  padding-bottom: 5px;
+  h2 {
+    margin: 5px 0;
+    grid-column: span 2;
+    text-align: center;
+  }
 `;
 
 function ToDoList() {
@@ -44,7 +60,11 @@ function ToDoList() {
     <Wrapper>
       <Container>
         <h1>오늘의 할 일</h1>
-        <AddToDo />
+        <AddBox>
+          <h2>ADD YOUR</h2>
+          <AddType />
+          <AddToDo />
+        </AddBox>
         <Selector />
         <ToDoBox>
           {toDos.map((toDo) => (

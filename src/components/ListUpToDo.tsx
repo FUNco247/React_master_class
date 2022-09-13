@@ -3,6 +3,13 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { IToDo, toDoState, typesState } from "../atoms";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+`;
+
 const List = styled.li`
   list-style-type: none;
   width: 100%;
@@ -13,6 +20,22 @@ const List = styled.li`
 
 const BtnBox = styled.div`
   float: right;
+`;
+
+const TypeBtn = styled.button<{ btnType: string }>`
+  width: 60px;
+  height: 20px;
+  border-radius: 3%;
+  border: none;
+  margin: 0 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: ${(props) =>
+    (props.btnType === "DONE" && "tomato") ||
+    (props.btnType === "TO_DO" && "blue") ||
+    (props.btnType === "DOING" && "green") ||
+    "purple"};
 `;
 
 interface IToDoProps {
@@ -37,31 +60,36 @@ function ListUpToDo({ toDo }: IToDoProps) {
   const types = useRecoilValue(typesState);
   const btnList = types.filter((type) => type !== toDo.type);
   return (
-    <List key={id}>
-      {text}
+    <Wrapper>
+      <List key={id}>{text}</List>
       <BtnBox>
         {btnList.map((type, index) => (
-          <button key={type + index} name={type} onClick={onClick}>
+          <TypeBtn
+            btnType={type}
+            key={type + index}
+            name={type}
+            onClick={onClick}
+          >
             {type}
-          </button>
+          </TypeBtn>
         ))}
         {/*        {toDo.type !== "DONE" && (
-          <button name={Types.DONE} onClick={onClick}>
-            Done
-          </button>
-        )}
-        {toDo.type !== "DOING" && (
-          <button name={Types.DOING} onClick={onClick}>
-            Doing
-          </button>
-        )}
-        {toDo.type !== "TO_DO" && (
-          <button name={Types.TO_DO} onClick={onClick}>
-            To Do
-          </button>
-        )} */}
+      <button name={Types.DONE} onClick={onClick}>
+        Done
+      </button>
+    )}
+    {toDo.type !== "DOING" && (
+      <button name={Types.DOING} onClick={onClick}>
+        Doing
+      </button>
+    )}
+    {toDo.type !== "TO_DO" && (
+      <button name={Types.TO_DO} onClick={onClick}>
+        To Do
+      </button>
+    )} */}
       </BtnBox>
-    </List>
+    </Wrapper>
   );
 }
 

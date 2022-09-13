@@ -1,44 +1,47 @@
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import styled from "styled-components";
 import { IToDo, typeState, typesState } from "../atoms";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 2px white;
+  border-radius: 3%;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 0;
+  h2 {
+    margin: 0;
+  }
+`;
+
+const SelectBar = styled.select`
+  border: none;
+  border-radius: 3%;
+  width: 100px;
+  height: 25px;
+`;
+
 function Selector() {
-  const [types, setTypes] = useRecoilState(typesState);
+  const types = useRecoilValue(typesState);
   const [type, setType] = useRecoilState(typeState);
-  const [value, setValue] = useState<React.HTMLInputTypeAttribute>("");
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setType(event.currentTarget.value as IToDo["type"]);
   };
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const newType = value;
-    setTypes((current) => {
-      //console.log(current, newType);
-      return [...current, newType];
-    });
-  };
-  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
-    setValue(event.currentTarget.value);
-  };
+
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <input
-          value={value}
-          onChange={onChange}
-          type="text"
-          placeholder="Enter your category"
-        ></input>
-        <button>Add</button>
-      </form>
-      <select value={type} onInput={onInput}>
+    <Wrapper>
+      <h2>Current Category is</h2>
+      <SelectBar value={type} onInput={onInput}>
         {types.map((type, index) => (
           <option key={index} value={type}>
             {type}
           </option>
         ))}
-      </select>
-    </>
+      </SelectBar>
+    </Wrapper>
   );
 }
 
