@@ -1,9 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { RecoilRoot } from "recoil";
-import { ThemeProvider } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import App from "./App";
-import { darkTheme } from "./theme";
+
+const GlobalStyle = createGlobalStyle`
+
+body {
+  font-weight: 300;
+  font-family: 'Source Sans Pro', sans-serif;
+  color:black;
+  line-height: 1.2;
+  background:linear-gradient(135deg,#e09,#d0e);
+  *{
+    box-sizing: border-box;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+}
+`;
 
 const root = document.getElementById("root");
 if (!root) {
@@ -12,10 +28,7 @@ if (!root) {
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <RecoilRoot>
-      <ThemeProvider theme={darkTheme}>
-        <App />
-      </ThemeProvider>
-    </RecoilRoot>
+    <GlobalStyle />
+    <App />
   </React.StrictMode>
 );
