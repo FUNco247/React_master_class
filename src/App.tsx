@@ -4,6 +4,8 @@
 
 import styled from "styled-components";
 import Animation from "./components/Animation";
+import Dragger from "./components/Dragger";
+import Gesture from "./components/Gesture";
 import Variants from "./components/Variants";
 
 const Wrapper = styled.div`
@@ -19,6 +21,8 @@ function App() {
     <Wrapper>
       <Animation />
       <Variants />
+      <Gesture />
+      <Dragger />
     </Wrapper>
   );
 }
