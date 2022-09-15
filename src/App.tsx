@@ -4,6 +4,7 @@
 
 import styled from "styled-components";
 import Animation from "./components/Animation";
+import CatchBall from "./components/CatchBall";
 import Dragger from "./components/Dragger";
 import Gesture from "./components/Gesture";
 import HideAndShow from "./components/HideAndShow";
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
 
 const Row = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 `;
 
@@ -39,6 +40,7 @@ function App() {
       </Row>
       <Row>
         <HideAndShow />
+        <CatchBall />
       </Row>
     </Wrapper>
   );

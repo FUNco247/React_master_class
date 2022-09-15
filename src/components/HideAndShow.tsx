@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 50px;
 `;
 
 const HideAndShowBox = styled(motion.div)`
