@@ -22,8 +22,8 @@ const gestureVariants = {
   hover: { scale: 1.2, rotateZ: 360, borderRadius: "15px" },
   click: {
     borderRadius: "60px",
-    backgroundColor: "tomato",
-    color: "white",
+    backgroundColor: "rgba(245, 115, 42)",
+    color: "rgb(255, 255, 255)",
     fontSize: "20px",
   },
 };

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Animation from "./components/Animation";
 import Dragger from "./components/Dragger";
 import Gesture from "./components/Gesture";
+import MotionValue from "./components/MotionValue";
 import Variants from "./components/Variants";
 
 const Wrapper = styled.div`
@@ -23,6 +24,7 @@ function App() {
       <Variants />
       <Gesture />
       <Dragger />
+      <MotionValue />
     </Wrapper>
   );
 }
