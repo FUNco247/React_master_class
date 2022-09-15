@@ -9,6 +9,7 @@ import Dragger from "./components/Dragger";
 import Gesture from "./components/Gesture";
 import HideAndShow from "./components/HideAndShow";
 import MotionValue from "./components/MotionValue";
+import Slider from "./components/Slider";
 import SvgAnimation from "./components/SvgAnimation";
 import Variants from "./components/Variants";
 
@@ -41,6 +42,7 @@ function App() {
       <Row>
         <HideAndShow />
         <CatchBall />
+        <Slider />
       </Row>
     </Wrapper>
   );
