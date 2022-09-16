@@ -56,7 +56,7 @@ function CatchBall() {
           />
         ) : null}
       </CatchBallBox>
-      <Btn onClick={onClick}>Throw</Btn>
+      <Btn onClick={onClick}>move</Btn>
       <CatchBallBox>
         {!isShow ? (
           <Ball

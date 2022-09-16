@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Animation from "./components/Animation";
 import CatchBall from "./components/CatchBall";
 import Dragger from "./components/Dragger";
+import Focusing from "./components/Focusing";
 import Gesture from "./components/Gesture";
 import HideAndShow from "./components/HideAndShow";
 import MotionValue from "./components/MotionValue";
@@ -14,8 +15,6 @@ import SvgAnimation from "./components/SvgAnimation";
 import Variants from "./components/Variants";
 
 const Wrapper = styled.div`
-  height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,6 +42,9 @@ function App() {
         <HideAndShow />
         <CatchBall />
         <Slider />
+      </Row>
+      <Row>
+        <Focusing />
       </Row>
     </Wrapper>
   );
