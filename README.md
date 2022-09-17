@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# This repository is my React-typescript study note.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- All components made by styled-component
+- You can find this course on nomadcoder.co [Nomad coder](https://nomadcoder.co).
+- This repository has three main topics
 
-## Available Scripts
+## 1. crypto currency diagram
 
-In the project directory, you can run:
+- stack : Coinpaprika API, React-Query, Apexcharts.js
+- published url : [https://funco247.github.io/React_master_class/]
+- You can check data history of each coin here
 
-### `npm start`
+### `Coinpaprika Api`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This API gives crypto coins price information
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+If you want to know about coinpaprika, check this [https://coinpaprika.com/]. Or just want to check API call URL, check [src/api.ts]
 
-### `npm test`
+### `Apexcharts.js library`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This is javascript chart library. I get coin data from `coin paprika` and visualize by using this library
+It is very easy to use becaaue it offer detail useage on their webside. I recomend check official DOCS and examples.
 
-### `npm run build`
+IF you want to know about Apexcharts library, check this [https://apexcharts.com/].
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `React-Query`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+React-query gives us many benefit like auto-cashing and lodaing state, error, data in useQuery hook and fancy dev-tool and so on.
+All those things made my code short and game me great development experience
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+All API calling code in this project used React query. Check DOCS[https://tanstack.com/query/v4/docs/overview] or [src/api.ts] and [arc/routes/coin]
 
-### `npm run eject`
+## 2. to-do-list
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- stack : Recoil
+- published url : [https://funco247.github.io/React_master_todolist/]
+- You can add your to-do and give them a category and also can set custom category
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `Recoil`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Recoil is state management tool that having same concept as Redux or context-api.
+The core of Recoil is an `Atom`. Check atoms I made in [src/stoms.tsx].
+I made 3 atoms and 1 selector. Atom is data group sharing same key value. And selector custom our data output (like filter function)
+Recoil have many hooks `{ useRecoilState, useRecoilValue, useSetRecoilState }` and so on
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- useRecoilState hook can get and set state
+- useRecoilValue hook can get state
+- useSetRecoilState hook can set state
+  So you should choose right one in your situation
 
-## Learn More
+## 2. Animation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- stack : Framer-motion
+- published url : [not yet]
+- You can see many beautiful animation here (comming soon)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `Framer-motion`
 
-### Code Splitting
+By using Framer-motion, animate element become uper easy. I made 10 examples in [src/components].
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- basic animation
+- slider
+- hide and show toggle
+- dragger
+- moving component when button clicked
+- hover gesture
+- Svg animation
+- pop up and focused component
+- tracking motion value
+- animating step by step
 
-### Analyzing the Bundle Size
+Each component file has more comment about animation, but you can find more detail in official web-site [https://www.framer.com/motion/].
+It has kind example and you can use imediately. More easier than normal CSS and have React frendly functions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Enjoy your code
 
-### Making a Progressive Web App
+### contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- email : [crispy.alc@gmail.com]
+- linked In : [https://www.linkedin.com/in/%EC%A7%84%EC%9A%B1-%EC%9D%B4-a4b135236/]
