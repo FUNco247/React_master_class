@@ -48,7 +48,7 @@ Recoil have many hooks `{ useRecoilState, useRecoilValue, useSetRecoilState }` a
 - useSetRecoilState hook can set state
   So you should choose right one in your situation
 
-## 2. Animation
+## 3. Animation
 
 - stack : Framer-motion
 - published url : [not yet]
