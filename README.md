@@ -51,8 +51,8 @@ Recoil have many hooks `{ useRecoilState, useRecoilValue, useSetRecoilState }` a
 ## 3. Animation
 
 - stack : Framer-motion
-- published url : [not yet]
-- You can see many beautiful animation here (comming soon)
+- published url : [https://funco247.github.io/React_master_Animation/]
+- You can see many beautiful animation here
 
 ### `Framer-motion`
 
