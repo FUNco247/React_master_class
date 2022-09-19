@@ -1,6 +1,6 @@
 # This repository is my React-typescript study note.
 
-- All components made by styled-component
+- I made all components by using styled-component
 - You can find this course on nomadcoder.co [Nomad coder](https://nomadcoder.co).
 - This repository has three main topics
 
